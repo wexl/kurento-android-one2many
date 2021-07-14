@@ -67,6 +67,7 @@ public class BroadCasterPresenter extends MvpBasePresenter<BroadCasterView>
         peerConnectionClient = PeerConnectionClient.getInstance();
         peerConnectionClient.createPeerConnectionFactory(
                 application.getApplicationContext(), peerConnectionParameters, this);
+//        peerConnectionClient.enableStatsEvents(true, 1000);
 
     }
 
@@ -350,8 +351,18 @@ public class BroadCasterPresenter extends MvpBasePresenter<BroadCasterView>
     @Override
     public void onPeerConnectionStatsReady(StatsReport[] reports) {
         RxScheduler.runOnUi(o -> {
+
+
+                for(int i = 0; i < reports.length; i++){
+                    StatsReport rep = reports[i];
+                    Log.e(TAG, "rep type " + rep.type);
+                    for(int j = 0; j < rep.values.length; j++){
+                        Log.e(TAG, "rep value " + rep.values[i].toString());
+                    }
+                    Log.e(TAG, "\n");
+                }
+//                Log.e(TAG, "run: " + reports);
             if (iceConnected) {
-                Log.e(TAG, "run: " + reports);
             }
         });
     }

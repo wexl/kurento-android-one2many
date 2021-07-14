@@ -71,5 +71,4 @@ public class KurentoPresenterRTCClient implements RTCClient {
     public void sendLocalIceCandidateRemovals(IceCandidate[] candidates) {
         Log.e(TAG, "sendLocalIceCandidateRemovals: ");
     }
-
 }
